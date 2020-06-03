@@ -1,0 +1,25 @@
+class Solution {
+    public String convert(String s, int numRows) {
+        if(numRows < 2) {
+            return s;
+        }
+        List<StringBuilder> allrows = new ArrayList<StringBuilder>();
+        for(int i = 0; i < numRows; i++) {
+            allrows.add(new StringBuilder());
+        }
+        int i = 0, flag = -1;
+        for(char c : s.toCharArray()) {
+            allrows.get(i).append(c);
+            if(i == 0 || i == numRows -1) {
+                flag = - flag;//如果到了边缘开始反转方向
+            }
+            
+            i += flag;
+        }
+        StringBuilder res = new StringBuilder();
+        String ss;
+        for(StringBuilder row : allrows) res.append(row);
+        ss=res.toString();
+        return ss;
+    }
+}
